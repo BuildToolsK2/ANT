@@ -1,1 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<project name="JavaStandaloneProject" default="main" basedir=".">
+
+	<description>
+		Sample Java Application to demonstrate JAR build process
+	</description>
+
+	<property name="projectName" value="JavaStandaloneProject" />
+
+	<!-- property for the source directory which contains java files -->
+	<property name="src.dir" location="src" />
+
+	<!-- property for the build directory which contains compiled classes -->
+	<property name="build.dir" location="bin" />
+
+	<!-- property for the dist directory which contains jar file -->
+	<property name="dist.dir" location="dist" />
+
+
+	<!-- To instantiate the project, by creating time stamp and then create 
+		the build and dist directories -->
+	<target name="init" depends="clean">
+
+		<!-- Create time stamp -->
+		<tstamp />
+
+		<!-- Create build and dist directory -->
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+
+	</target>
+
+	<!-- To compile the java files from src directory to build directory -->
+	<target name="compile" depends="init">
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" />
+	</target>
+
+	<!-- To create the JAR file -->
+	<target name="dist" depends="compile">
+		<jar jarfile="${dist.dir}/${projectName}.jar" basedir="${build.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="org.nishant.Helloworld" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- To remove build and dist directories -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="main" depends="init,compile,dist" />
+
+</project>
