@@ -1,0 +1,5 @@
+/.metadata/*.*
+/JavaStandaloneProject/.project
+/JavaStandaloneProject/.settings/org.eclipse.jdt.core.prefs
+/RemoteSystemsTempFiles/.project
+/JavaStandaloneProject/.classpath
