@@ -51,6 +51,11 @@
 			<manifest>
 				<attribute name="Main-Class" value="org.nishant.App" />
 			</manifest>
+
+			<!-- To include external jar files inside final build -->
+			<zipgroupfileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</zipgroupfileset>
 		</jar>
 	</target>
 
