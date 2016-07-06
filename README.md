@@ -5,4 +5,4 @@ HelloWorld project is the basic ant project, which echo’s Hello World!!!!! to 
 
 JavaStandaloneProject is the sample project, which includes compiling the source code and package them into jar file.
 
-JavaStandaloneProjectExtensionOne is the extension of JavaStandaloneProject, to support scenario of using external dependencies in the lib folder while compiling the source code.
+JavaStandaloneProjectExtensionOne is the extension of JavaStandaloneProject, to support scenario of using external dependencies in the lib folder while compiling the source code and also include external dependencies in the final build.
