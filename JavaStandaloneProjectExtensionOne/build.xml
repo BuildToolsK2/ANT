@@ -16,6 +16,16 @@
 	<!-- property for the dist directory which contains jar file -->
 	<property name="dist.dir" location="dist" />
 
+	<!-- property for the lib directory which contains external jar files -->
+	<property name="lib.dir" location="lib" />
+
+	<!-- declare the classpath in order to include them while compiling -->
+	<path id="classpath">
+		<fileset dir="${lib.dir}/">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
 
 	<!-- To instantiate the project, by creating time stamp and then create 
 		the build and dist directories -->
@@ -30,9 +40,9 @@
 
 	</target>
 
-	<!-- To compile the java files from src directory to build directory -->
+	<!-- To compile the java files from src directory to build directory and using classpath reference -->
 	<target name="compile" depends="init">
-		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" />
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" />
 	</target>
 
 	<!-- To create the JAR file -->
