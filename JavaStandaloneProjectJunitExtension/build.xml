@@ -22,9 +22,10 @@
 		<!-- Create time stamp -->
 		<tstamp />
 
-		<!-- Create build and dist directory -->
+		<!-- Create build, dist and test_report directories -->
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${test.report.dir}" />
 
 	</target>
 
@@ -44,8 +45,18 @@
 			<!-- Include compiled java code in the classpath -->
 			<classpath location="${build.dir}" />
 
-			<!-- Specify the name of the test case to run -->
-			<test name="org.nishant.MathTest" />
+			<!-- Specify the report formats -->
+			<formatter type="xml" />
+			<formatter type="plain" />
+
+			<!-- To run all the junit test cases in a batch -->
+			<batchtest fork="yes" todir="${test.report.dir}">
+
+				<!-- Include all the java files, which ends with Test -->
+				<fileset dir="${src.dir}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
 		</junit>
 	</target>
 
@@ -58,6 +69,7 @@
 	<target name="clean">
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
+		<delete dir="${test.report.dir}" />
 	</target>
 
 	<target name="main" depends="init,compile,test,dist" />

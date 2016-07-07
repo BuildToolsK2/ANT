@@ -1,0 +1,7 @@
+Testsuite: org.nishant.StringUtilsUsageTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 0.078 sec
+
+Testcase: testBlankStringTrue took 0.012 sec
+Testcase: testNotBlankStringTrue took 0.001 sec
+Testcase: testNotBlankStringFalse took 0 sec
+Testcase: testBlankStringFalse took 0 sec
