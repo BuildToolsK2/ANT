@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JavaStandaloneProjectExtensionOne" default="main" basedir=".">
+
+	<description>
+		Sample Java Application to demonstrate JAR build process
+	</description>
+
+	<!-- To include properties from build.properties file -->
+	<property file="build.properties" />
+
+	<!-- declare the classpath in order to include external jar files while compiling -->
+	<path id="classpath">
+		<fileset dir="${lib.dir}/">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- To instantiate the project, by creating time stamp and then create 
+		the build and dist directories -->
+	<target name="init" depends="clean">
+
+		<!-- Create time stamp -->
+		<tstamp />
+
+		<!-- Create build and dist directory -->
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+
+	</target>
+
+	<!-- To compile the java files from src directory to build directory and using classpath reference -->
+	<target name="compile" depends="init">
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" />
+	</target>
+
+	<!-- To run Junit test case-->
+	<target name="test" depends="compile">
+
+		<junit printsummary="yes" haltonfailure="no">
+
+			<!-- Include jar files in the classpath -->
+			<classpath refid="classpath" />
+
+			<!-- Include compiled java code in the classpath -->
+			<classpath location="${build.dir}" />
+
+			<!-- Specify the name of the test case to run -->
+			<test name="org.nishant.MathTest" />
+		</junit>
+	</target>
+
+	<!-- To create the JAR file -->
+	<target name="dist" depends="test">
+		<jar jarfile="${dist.dir}/${projectName}.jar" basedir="${build.dir}" />
+	</target>
+
+	<!-- To remove build and dist directories -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="main" depends="init,compile,test,dist" />
+
+</project>
