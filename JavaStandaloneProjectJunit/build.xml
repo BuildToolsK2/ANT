@@ -19,13 +19,12 @@
 	<!-- property for the lib directory which contains external jar files -->
 	<property name="lib.dir" location="lib" />
 
-	<!-- declare the classpath in order to include them while compiling -->
+	<!-- declare the classpath in order to include external jar files while compiling -->
 	<path id="classpath">
 		<fileset dir="${lib.dir}/">
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
-
 
 	<!-- To instantiate the project, by creating time stamp and then create 
 		the build and dist directories -->
@@ -45,8 +44,24 @@
 		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" />
 	</target>
 
+	<!-- To run Junit test case-->
+	<target name="test" depends="compile">
+
+		<junit printsummary="yes" haltonfailure="no">
+
+			<!-- Include jar files in the classpath -->
+			<classpath refid="classpath" />
+
+			<!-- Include compiled java code in the classpath -->
+			<classpath location="${build.dir}" />
+
+			<!-- Specify the name of the test case to run -->
+			<test name="org.nishant.MathTest" />
+		</junit>
+	</target>
+
 	<!-- To create the JAR file -->
-	<target name="dist" depends="compile">
+	<target name="dist" depends="test">
 		<jar jarfile="${dist.dir}/${projectName}.jar" basedir="${build.dir}" />
 	</target>
 
@@ -56,6 +71,6 @@
 		<delete dir="${dist.dir}" />
 	</target>
 
-	<target name="main" depends="init,compile,dist" />
+	<target name="main" depends="init,compile,test,dist" />
 
 </project>
