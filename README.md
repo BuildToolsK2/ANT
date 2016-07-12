@@ -12,3 +12,5 @@ JavaStandaloneProjectJunit is the extension of JavaStandaloneProjectExtensionOne
 JavaStandaloneProjectJunitExtension is the extension of JavaStandaloneProjectJunit which includes code to execute all the junit test cases in a batch and also generate test reports.
 
 JavaStandaloneProjectExtensionTwo is the extension of JavaStandaloneProjectExtensionOne which includes code to generate log file for build process and to generate java docs.
+
+JavaWebApp is the sample project,which covers creation of WAR file,includes compiling the source code and include all the files inside WebContent directory to create final package of WAR build file.
