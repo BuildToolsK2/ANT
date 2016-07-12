@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JavaStandaloneProjectExtensionOne" default="main" basedir=".">
+
+	<description>
+		Sample Java Application to demonstrate WAR build process
+	</description>
+
+	<!-- To include properties from build.properties file -->
+	<property file="build.properties" />
+
+	<!-- declare the classpath in order to include external jar files while compiling -->
+	<path id="classpath">
+		<fileset dir="${lib.dir}/">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- To remove build and dist directories -->
+	<target name="clean">
+
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- To remove build and dist directories -->
+	<target name="init" depends="clean">
+
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- To compile the java files from src directory to build directory and using classpath reference -->
+	<target name="compile" depends="init">
+
+		<!-- Also specify the source and target java version for compilation -->
+		<javac source="1.6" target="1.6" includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" />
+	</target>
+
+	<!-- To create WAR build file -->
+	<target name="package" depends="compile">
+		<war destfile="${dist.dir}/${projectName}.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent" />
+			<lib dir="${lib.dir}" />
+			<classes dir="${build.dir}" />
+		</war>
+	</target>
+
+	<target name="main" depends="init,compile,package" />
+
+</project>
