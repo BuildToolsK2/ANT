@@ -12,10 +12,10 @@
 		the build and dist directories -->
 	<target name="init" depends="clean">
 
-		<!-- Create build and dist directories -->
+		<!-- Create build, dist and doc directories -->
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${dist.dir}" />
-
+		<mkdir dir="${docs.dir}" />
 	</target>
 
 	<!-- Start the logger -->
@@ -48,13 +48,19 @@
 		<jar jarfile="${dist.dir}/${projectName}.jar" basedir="${build.dir}" />
 	</target>
 
+	<!-- Generate Java docs in docs directory -->
+	<target name="javadocs" depends="dist">
+		<javadoc sourcepath="${src.dir}" windowtitle="Nishant ANT Practise" destdir="${docs.dir}" />
+	</target>
+
 	<!-- To remove build and dist directories -->
 	<target name="clean" depends="startrecorder">
 
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
+		<delete dir="${docs.dir}" />
 	</target>
 
-	<target name="main" depends="init,compile,dist,stoprecorder" />
+	<target name="main" depends="init,compile,dist,javadocs,stoprecorder" />
 
 </project>

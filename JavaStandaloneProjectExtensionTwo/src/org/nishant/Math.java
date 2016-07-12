@@ -12,7 +12,7 @@ public class Math {
 	 * 
 	 * @param a
 	 * @param b
-	 * @return
+	 * @return sum of two integers
 	 */
 	public int add(int a, int b) {
 		return a + b;
@@ -23,7 +23,7 @@ public class Math {
 	 * 
 	 * @param a
 	 * @param b
-	 * @return
+	 * @return subtract of two integers
 	 */
 	public int subtract(int a, int b) {
 		return a - b;
@@ -34,7 +34,7 @@ public class Math {
 	 * 
 	 * @param a
 	 * @param b
-	 * @return
+	 * @return multiplication of two integers
 	 */
 	public int multiply(int a, int b) {
 		return a * b;
@@ -45,7 +45,7 @@ public class Math {
 	 * 
 	 * @param a
 	 * @param b
-	 * @return
+	 * @return division of two integers
 	 */
 	public int divide(int a, int b) {
 		return a / b;
