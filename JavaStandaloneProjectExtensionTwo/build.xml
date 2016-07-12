@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JavaStandaloneProjectExtensionOne" default="main" basedir=".">
+
+	<description>
+		Sample Java Application to demonstrate JAR build process
+	</description>
+
+	<!-- To include properties from build.properties file -->
+	<property file="build.properties" />
+
+	<!-- To instantiate the project, by creating time stamp and then create 
+		the build and dist directories -->
+	<target name="init" depends="clean">
+
+		<!-- Create build and dist directories -->
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+
+	</target>
+
+	<!-- Start the logger -->
+	<target name="startrecorder">
+
+		<!-- Create time stamp -->
+		<tstamp />
+
+		<!-- first delete the old log directory -->
+		<delete dir="${log.dir}" />
+
+		<!-- create the new one -->
+		<mkdir dir="${log.dir}" />
+
+		<record name="${log.dir}/${projectName}_${DSTAMP}_log.txt" action="start" append="false" />
+	</target>
+
+	<!-- Stop the logger -->
+	<target name="stoprecorder">
+		<record name="${log.dir}/${projectName}_${DSTAMP}_log.txt" action="stop" />
+	</target>
+
+	<!-- To compile the java files from src directory to build directory and using classpath reference -->
+	<target name="compile" depends="init">
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" />
+	</target>
+
+	<!-- To create the JAR file -->
+	<target name="dist" depends="compile">
+		<jar jarfile="${dist.dir}/${projectName}.jar" basedir="${build.dir}" />
+	</target>
+
+	<!-- To remove build and dist directories -->
+	<target name="clean" depends="startrecorder">
+
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="main" depends="init,compile,dist,stoprecorder" />
+
+</project>
