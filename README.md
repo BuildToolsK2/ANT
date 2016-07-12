@@ -10,3 +10,5 @@ JavaStandaloneProjectExtensionOne is the extension of JavaStandaloneProject, to 
 JavaStandaloneProjectJunit is the extension of JavaStandaloneProjectExtensionOne, which includes basic junit integration, to run a single junit test case before creating package build.
 
 JavaStandaloneProjectJunitExtension is the extension of JavaStandaloneProjectJunit which includes code to execute all the junit test cases in a batch and also generate test reports.
+
+JavaStandaloneProjectExtensionTwo is the extension of JavaStandaloneProjectExtensionOne which includes code to generate log file for build process and to generate java docs.
