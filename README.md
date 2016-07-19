@@ -18,3 +18,7 @@ JavaWebApp is the sample project,which covers creation of WAR file,includes comp
 JavaWebAppDeploy is the extension of JavaWebApp which includes deploying the war file to the local tomcat server, by copying the war file to tomcat webapps directory and task for start or stop local tomcat server.
 
 JavaStandaloneProjectFTP is the extension of JavaStandaloneProject which includes transfering the build file to the remote server using ftp, need to add commons-net-1.4.1.jar and jakarta-oro-2.0.8.jar to the ant lib directory.
+
+JavaStandaloneProjectSCP is similar to JavaStandaloneProjectFTP, here we transfers the build file using scp command.
+
+
