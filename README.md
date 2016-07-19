@@ -19,6 +19,6 @@ JavaWebAppDeploy is the extension of JavaWebApp which includes deploying the war
 
 JavaStandaloneProjectFTP is the extension of JavaStandaloneProject which includes transfering the build file to the remote server using ftp, need to add commons-net-1.4.1.jar and jakarta-oro-2.0.8.jar to the ant lib directory.
 
-JavaStandaloneProjectSCP is similar to JavaStandaloneProjectFTP, here we transfers the build file using scp command.
+JavaStandaloneProjectSCP is similar to JavaStandaloneProjectFTP, here we transfers the build file using scp command, need to add jsch-0.1.53.jar to the ant lib directory.
 
 
