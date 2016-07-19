@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JavaStandaloneProject" default="main" basedir=".">
+
+	<description>
+		Sample Java Application to demonstrate JAR build process
+	</description>
+
+	<!-- To include properties from build.properties file -->
+	<property file="build.properties" />
+
+
+	<!-- To instantiate the project, by creating time stamp and then create 
+		the build and dist directories -->
+	<target name="init" depends="clean">
+
+		<!-- Create time stamp -->
+		<tstamp />
+
+		<!-- Create build and dist directory -->
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+
+	</target>
+
+	<!-- To compile the java files from src directory to build directory -->
+	<target name="compile" depends="init">
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" />
+	</target>
+
+	<!-- To create the JAR file -->
+	<target name="dist" depends="compile">
+		<jar jarfile="${dist.dir}/${projectName}.jar" basedir="${build.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="org.nishant.Helloworld" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- To remove build and dist directories -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- To transfer build file to remote server using scp -->
+	<target name="send_build" depends="dist">
+
+		<scp remoteTodir="${remote.userid}@${remote.server}:${remote.dir}" password="${remote.password}" trust="yes" sftp="true">
+			<fileset dir="${dist.dir}">
+				<include name="**/*" />
+			</fileset>
+		</scp>
+	</target>
+
+	<target name="main" depends="init,compile,dist,send_build" />
+
+</project>
