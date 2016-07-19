@@ -14,3 +14,5 @@ JavaStandaloneProjectJunitExtension is the extension of JavaStandaloneProjectJun
 JavaStandaloneProjectExtensionTwo is the extension of JavaStandaloneProjectExtensionOne which includes code to generate log file for build process and to generate java docs.
 
 JavaWebApp is the sample project,which covers creation of WAR file,includes compiling the source code and include all the files inside WebContent directory to create final package of WAR build file.
+
+JavaWebAppDeploy is the extension of JavaWebApp which includes deploying the war file to the local tomcat server, by copying the war file to tomcat webapps directory and task for start or stop local tomcat server.
