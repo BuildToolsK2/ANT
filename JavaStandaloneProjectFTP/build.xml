@@ -5,16 +5,8 @@
 		Sample Java Application to demonstrate JAR build process
 	</description>
 
-	<property name="projectName" value="JavaStandaloneProject" />
-
-	<!-- property for the source directory which contains java files -->
-	<property name="src.dir" location="src" />
-
-	<!-- property for the build directory which contains compiled classes -->
-	<property name="build.dir" location="bin" />
-
-	<!-- property for the dist directory which contains jar file -->
-	<property name="dist.dir" location="dist" />
+	<!-- To include properties from build.properties file -->
+	<property file="build.properties" />
 
 
 	<!-- To instantiate the project, by creating time stamp and then create 
