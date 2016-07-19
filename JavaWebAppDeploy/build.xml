@@ -45,6 +45,21 @@
 		</war>
 	</target>
 
-	<target name="main" depends="init,compile,package" />
+	<!-- To copy the created build file(.war) to the tomcat webapps directory -->
+	<target name="deploy" depends="package">
+		<copy file="${dist.dir}/${projectName}.war" todir="${server.dir}/webapps" />
+	</target>
+
+	<!-- To start the tomcat server by executing startup.sh -->
+	<target name="start_server" depends="deploy">
+		<exec executable="${server.dir}/bin/startup.sh" />
+	</target>
+
+	<!-- To stop the tomcat server by executing shutdown.sh -->
+	<target name="stop_server">
+		<exec executable="${server.dir}/bin/shutdown.sh" />
+	</target>
+
+	<target name="main" depends="init,compile,package,deploy,start_server" />
 
 </project>
