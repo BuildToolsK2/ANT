@@ -42,6 +42,19 @@
 		<delete dir="${dist.dir}" />
 	</target>
 
-	<target name="main" depends="init,compile,dist" />
+	<!-- To create new directort at remote server using ftp and transfers the build file at that location using ftp -->
+	<target name="send_build" depends="dist">
+
+		<!-- Create directory at remote server -->
+		<ftp server="${ftp.server}" remotedir="${ftp.remote.dir}" userid="${ftp.userid}" password="${ftp.password}" action="mkdir" verbose="yes">
+		</ftp>
+
+		<!-- Transfers the build file at remote server's directory -->
+		<ftp server="${ftp.server}" remotedir="${ftp.remote.dir}" userid="${ftp.userid}" password="${ftp.password}" action="send" verbose="yes" depends="yes">
+			<fileset file="${dist.dir}/${projectName}.jar" />
+		</ftp>
+	</target>
+
+	<target name="main" depends="init,compile,dist,send_build" />
 
 </project>
